@@ -1,0 +1,59 @@
+﻿@using Sports.MVC.Models.Concrete
+@model PlayerViewModel
+
+<div class="card">
+	<div class="card-header">
+		YENİ
+	</div>
+	<div class="card-body">
+		<form class="row g-3" asp-controller="Player" asp-action="Add" method="post">
+			<div class="col-md-12">
+				<label asp-for="PlayerName" class="form-label"></label>
+				<input asp-for="PlayerName" class="form-control" />
+				<span asp-validation-for="PlayerName" class="text-danger"></span>
+			</div>
+			<div class="col-md-12">
+				<label asp-for="PlayerSurname" class="form-label"></label>
+				<input asp-for="PlayerSurname" class="form-control" />
+				<span asp-validation-for="PlayerSurname" class="text-danger"></span>
+			</div>
+			<div class="col-md-12">
+				<label asp-for="PlayerBirthDate" class="form-label"></label>
+				<input asp-for="PlayerBirthDate" class="form-control" />
+				<span asp-validation-for="PlayerBirthDate" class="text-danger"></span>
+			</div>
+			<div class="col-md-12">
+				<label asp-for="Gender" class="form-label"></label>
+				<input asp-for="Gender" class="form-control" />
+				<span asp-validation-for="Gender" class="text-danger"></span>
+			</div>
+
+			<div class="col-md-12">
+				<label asp-for="BranchId" class="form-label"></label>
+				@* <input asp-for="CityId" class="form-control" /> *@
+
+				<select name="BranchId" id="BranchId" class="form-select">
+					@foreach (BranchViewModel branch in (List<BranchViewModel>)ViewBag.BranchList)
+					{
+						<option value="@branch.Id">@branch.Name</option>
+					}
+				</select>
+
+				<span asp-validation-for="BranchId" class="text-danger"></span>
+			</div>
+
+
+			<div class="col-12">
+				<input type="submit" class="btn btn-success" value="Ekle" />
+			</div>
+		</form>
+	</div>
+	<div class="card-footer text-body-secondary">
+		<span class="badge text-info">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span>
+	</div>
+</div>
+
+@section Scripts
+{
+	<partial name="_ValidationScriptsPartial" />
+}

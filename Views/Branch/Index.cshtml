@@ -1,0 +1,44 @@
+﻿@using Sports.MVC.Models.Concrete
+@model List<BranchViewModel>
+
+<div class="row">
+    <div class="row">
+        @foreach (var branch in Model)
+        {
+            <div class="col-4">
+                <div class="card" style="width: 26rem;">
+                    @if (branch.Name == "Futbol")  // HOcaya sor nasıl generic yapabiliriz?
+                    {
+                        <img src="/css/Futbol2.png" class="card-img-top">
+                    }
+                    @if (branch.Name == "Basketbol")
+                    {
+                        <img src="/css/Basketbol2.png" class="card-img-top">
+                    }
+                    @if (branch.Name == "Voleybol")
+                    {
+                        <img src="/css/voleybol2.png" class="card-img-top">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@branch.Name</h5> <!-- Branş ismini buradan alıyoruz -->
+                        <h3 class="card-text">@branch.Id</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var team in branch.BranchTeam)
+                        {
+                            <li class="list-group-item">@team.Team.TeamName</li> <!-- Takım isimlerini burada listele -->
+                        }
+                    </ul>
+                    <div class="card-body">
+                        <a class="btn btn-success" role="button" asp-controller="Team" asp-action="Add">Yeni Takım Ekle</a>
+                        <a class="btn btn-danger align-content-center" role="button" asp-controller="Branch" asp-action="Remove" asp-route-id="@branch.Id">Branşı sil</a>
+                        <a class="btn btn-warning align-content-center" role="button" asp-controller="Branch" asp-action="Edit" asp-route-id="@branch.Id">Branşı Düzenle</a>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div> <hr />
+    <a class="btn btn-success align-content-center" role="button" asp-controller="Branch" asp-action="Add">Yeni Branş Ekle</a> <hr/> <!--Hocaya butonu ayarlatır mısın-->
+     
+</div>

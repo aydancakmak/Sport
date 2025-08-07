@@ -1,0 +1,49 @@
+﻿@using Sports.MVC.Models.Concrete
+@model PlayerViewModel
+
+@{
+	int id = Model.Id;
+}
+
+<div class="card">
+	<div class="card-header">
+		YENİ
+	</div>
+	<div class="card-body">
+		<form class="row g-3" asp-controller="Player" asp-action="Edit">
+			<div class="col-md-12">
+				<label asp-for="PlayerName" class="form-label">Adı</label>
+				<input asp-for="PlayerName" class="form-control" />
+			</div>
+			<div class="col-md-12">
+				<label asp-for="PlayerSurname" class="form-label">Adı</label>
+				<input asp-for="PlayerSurname" class="form-control" />
+			</div>
+			<div class="col-md-12">
+				<label asp-for="PlayerBirthDate" class="form-label">Adı</label>
+				<input asp-for="PlayerBirthDate" class="form-control" />
+			</div>
+			<div class="col-md-12">
+				<label asp-for="Gender" class="form-label">Adı</label>
+				<input asp-for="Gender" class="form-control" />
+			</div>
+			<div class="col-md-12">
+				<label asp-for="Branch.Name" class="form-label">Adı</label>
+				<input asp-for="Branch.Name" class="form-control" />
+			</div>
+
+			<div class="col-12">
+				<input type="submit" class="btn btn-success" value="Düzenle" />
+				<input type="hidden" asp-for="Id" />
+			</div>
+		</form>
+	</div>
+	<div class="card-footer text-body-secondary">
+		<span class="badge text-secondary">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span>
+	</div>
+</div>
+
+@section Scripts
+{
+	<partial name="_ValidationScriptsPartial" />
+}
